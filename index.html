@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>PopMash - Pop en Español</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<h1>PopMash 🎵</h1>
+<p class="subtitle">Elige la canción que más te guste</p>
+
+<div class="battle">
+
+<button id="optionA" onclick="choose(0)"></button>
+
+<div class="vs">VS</div>
+
+<button id="optionB" onclick="choose(1)"></button>
+
+</div>
+
+<div class="controls">
+
+<button class="rankingBtn" onclick="showRanking()">Ver Ranking</button>
+
+<button class="battleBtn" onclick="newBattle()">Nueva Comparación</button>
+
+</div>
+
+<div id="ranking"></div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
