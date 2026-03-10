@@ -1,20 +1,78 @@
 const songs = [
 
-"Despacito – Luis Fonsi",
-"Bailando – Enrique Iglesias",
-"La Bicicleta – Shakira",
+/* MORAT */
+
+"Cómo Te Atreves – Morat",
+"Besos en Guerra – Morat",
+"Cuando Nadie Ve – Morat",
+"Amor con Hielo – Morat",
+"506 – Morat",
+"Salir Con Vida – Morat",
+"Mi Nuevo Vicio – Morat",
+"A Dónde Vamos – Morat",
+
+/* YATRA */
+
 "Tacones Rojos – Sebastián Yatra",
-"Eres – Café Tacvba",
+"Pareja del Año – Sebastián Yatra",
+"Traicionera – Sebastián Yatra",
+"Robarte un Beso – Sebastián Yatra",
+"Un Año – Sebastián Yatra",
+"Dos Oruguitas – Sebastián Yatra",
+
+/* ENRIQUE IGLESIAS */
+
+"Bailando – Enrique Iglesias",
+"Cuando Me Enamoro – Enrique Iglesias",
+"Hero – Enrique Iglesias",
+"El Perdón – Enrique Iglesias",
+"Subeme La Radio – Enrique Iglesias",
+
+/* LUIS FONSI */
+
+"Despacito – Luis Fonsi",
+"Aquí Estoy Yo – Luis Fonsi",
+"No Me Doy Por Vencido – Luis Fonsi",
+"Imagíname Sin Ti – Luis Fonsi",
+
+/* SHAKIRA */
+
+"Ojos Así – Shakira",
+"La Bicicleta – Shakira",
+"Hips Don't Lie – Shakira",
+"Antología – Shakira",
+"Estoy Aquí – Shakira",
+"Waka Waka – Shakira",
+
+/* CHINO & NACHO */
+
+"Andas En Mi Cabeza – Chino & Nacho",
+"Mi Niña Bonita – Chino & Nacho",
+"El Poeta – Chino & Nacho",
+"Tu Angelito – Chino & Nacho",
+
+/* EMILIA */
+
+"No Se Ve – Emilia",
+"Como Si No Importara – Emilia",
+"Exclusive – Emilia",
+"La_Original – Emilia",
+
+/* BEELE */
+
+"Loco – Beéle",
+"Morena – Beéle",
+"Inolvidable – Beéle",
+"Si Te Interesa – Beéle",
+
+/* OTRAS POP LATINO */
+
 "Me Rehúso – Danny Ocean",
 "Vivir Mi Vida – Marc Anthony",
 "Rayando el Sol – Maná",
 "Colgando en tus manos – Carlos Baute",
-"Ojos Así – Shakira",
-"Labios Compartidos – Maná",
 "De Música Ligera – Soda Stereo",
-"Robarte un Beso – Carlos Vives",
-"Cuando Me Enamoro – Enrique Iglesias",
-"Corazón Espinado – Santana"
+"Labios Compartidos – Maná"
 
 ];
 
@@ -42,7 +100,6 @@ document.getElementById("optionB").innerText = songs[currentB];
 function vote(choice){
 
 const listener = document.getElementById("listener").value;
-const context = document.getElementById("context").value;
 
 let weight = 1;
 
