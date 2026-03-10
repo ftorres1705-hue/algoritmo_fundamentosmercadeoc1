@@ -1,112 +1,119 @@
-body{
+const songs = [
 
-background:#0f0f0f;
-color:white;
-font-family:Arial, Helvetica, sans-serif;
-text-align:center;
-margin:0;
-padding:0;
+"Despacito – Luis Fonsi",
+"Bailando – Enrique Iglesias",
+"La Bicicleta – Shakira",
+"Tacones Rojos – Sebastián Yatra",
+"Eres – Café Tacvba",
+"Me Rehúso – Danny Ocean",
+"Vivir Mi Vida – Marc Anthony",
+"Rayando el Sol – Maná",
+"Colgando en tus manos – Carlos Baute",
+"Ojos Así – Shakira",
+"Labios Compartidos – Maná",
+"De Música Ligera – Soda Stereo",
+"Robarte un Beso – Carlos Vives",
+"Cuando Me Enamoro – Enrique Iglesias",
+"Corazón Espinado – Santana"
 
-}
+];
 
-h1{
+let votes = new Array(songs.length).fill(0);
 
-margin-top:40px;
-font-size:40px;
-letter-spacing:2px;
+let currentA;
+let currentB;
 
-}
+function newBattle(){
 
-.subtitle{
+currentA = Math.floor(Math.random()*songs.length);
+currentB = Math.floor(Math.random()*songs.length);
 
-color:#bbbbbb;
-margin-bottom:40px;
+while(currentA === currentB){
 
-}
-
-.battle{
-
-display:flex;
-justify-content:center;
-align-items:center;
-gap:40px;
-margin-top:30px;
-flex-wrap:wrap;
-
-}
-
-button{
-
-background:#1c1c1c;
-color:white;
-border:2px solid #333;
-padding:20px;
-font-size:18px;
-border-radius:12px;
-cursor:pointer;
-width:260px;
-transition:all 0.3s;
+currentB = Math.floor(Math.random()*songs.length);
 
 }
 
-button:hover{
-
-background:#ff2d75;
-border-color:#ff2d75;
-transform:scale(1.05);
+document.getElementById("optionA").innerText = songs[currentA];
+document.getElementById("optionB").innerText = songs[currentB];
 
 }
 
-.vs{
+function vote(choice){
 
-font-size:22px;
-font-weight:bold;
-color:#888;
+const listener = document.getElementById("listener").value;
+const context = document.getElementById("context").value;
 
-}
+let weight = 1;
 
-.controls{
+if(listener === "musico") weight = 2;
 
-margin-top:40px;
+if(choice === 0){
 
-}
+votes[currentA] += weight;
 
-.rankingBtn{
+}else{
 
-background:#ffffff;
-color:#000;
-margin-right:10px;
+votes[currentB] += weight;
 
 }
 
-.rankingBtn:hover{
-
-background:#ff2d75;
-color:white;
+updateRanking();
+newBattle();
 
 }
 
-.battleBtn{
+function updateRanking(){
 
-background:#222;
+let ranking = songs.map((song,index)=>{
+
+return {song:song,score:votes[index]}
+
+});
+
+ranking.sort((a,b)=>b.score-a.score);
+
+let html="";
+
+ranking.slice(0,10).forEach((item,i)=>{
+
+html += `<div class="rankItem">${i+1}. ${item.song} — ${item.score} votos</div>`
+
+});
+
+document.getElementById("rankingList").innerHTML = html;
+
+}
+
+function showTop(){
+
+updateRanking();
 
 }
 
-#ranking{
+function resetVotes(){
 
-margin-top:50px;
-max-width:600px;
-margin-left:auto;
-margin-right:auto;
-font-size:18px;
+votes = new Array(songs.length).fill(0);
+
+updateRanking();
 
 }
 
-.rankItem{
+function exportVotes(){
 
-background:#1a1a1a;
-padding:10px;
-margin:5px;
-border-radius:8px;
+let data = songs.map((s,i)=>`${s},${votes[i]}`).join("\n");
+
+let blob = new Blob([data],{type:"text/plain"});
+
+let link = document.createElement("a");
+
+link.href = URL.createObjectURL(blob);
+
+link.download = "votos_pop.txt";
+
+link.click();
 
 }
+
+newBattle();
+updateRanking();
