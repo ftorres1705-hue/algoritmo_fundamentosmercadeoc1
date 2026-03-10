@@ -3,84 +3,83 @@
 
 <head>
 <meta charset="UTF-8">
-<title>PopMash - Algoritmo de Pop en Español</title>
+<title>PopMash</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<h1>PopMash 🎧</h1>
+<h1>🎧 PopMash</h1>
+<p>Comparación A/B para construir rankings de pop latino.</p>
 
-<!-- CONFIGURACIÓN -->
+<div class="container">
 
-<section class="config">
+<!-- CONFIGURA -->
 
-<h2>1. Configura</h2>
+<div class="card">
+
+<h2>1) Configura</h2>
 
 <label>Tipo de oyente</label>
-
 <select id="listener">
 <option value="nuevo">Nuevo oyente</option>
 <option value="casual">Fan casual</option>
 <option value="musico">Músico</option>
 </select>
 
-
 <label>Contexto</label>
-
 <select id="context">
-<option value="concierto">¿Cuál funciona mejor en concierto?</option>
-<option value="audifonos">¿Cuál suena mejor con audífonos?</option>
-<option value="historia">¿Cuál cuenta mejor historia?</option>
-<option value="riff">¿Cuál tiene el riff más poderoso?</option>
-<option value="emocion">¿Cuál emociona más?</option>
+<option>¿Cuál funciona mejor en concierto?</option>
+<option>¿Cuál suena mejor con audífonos?</option>
+<option>¿Cuál tiene mejor historia?</option>
+<option>¿Cuál tiene mejor riff?</option>
 </select>
 
-<div class="buttons">
-
 <button onclick="newBattle()">Nuevo duelo</button>
+<button onclick="resetVotes()">Reiniciar</button>
 
-<button onclick="resetVotes()">Reiniciar votos</button>
+<p style="opacity:0.6;margin-top:15px;">
+El ranking cambia según quién escucha y para qué.
+</p>
 
 </div>
 
-</section>
+<!-- ELIGE -->
 
-<!-- SECCIÓN ELEGIR -->
+<div class="card">
 
-<section class="battle">
+<h2>2) Elige</h2>
 
-<h2>2. Elige</h2>
+<p id="question">¿Cuál es mejor?</p>
 
 <div class="duel">
 
-<button id="optionA" onclick="vote(0)"></button>
+<div id="optionA" class="song" onclick="vote(0)"></div>
 
 <div class="vs">VS</div>
 
-<button id="optionB" onclick="vote(1)"></button>
+<div id="optionB" class="song" onclick="vote(1)"></div>
 
 </div>
 
-<div class="buttons">
-
-<button onclick="showTop()">Ver Top</button>
-
+<div style="margin-top:20px;">
+<button onclick="showTop()">Ver Top 10</button>
 <button onclick="exportVotes()">Exportar votos</button>
-
 </div>
 
-</section>
+</div>
 
 <!-- RANKING -->
 
-<section class="ranking">
+<div class="card">
 
-<h2>3. Ranking en tiempo real</h2>
+<h2>3) Ranking (Top 10)</h2>
 
 <div id="rankingList"></div>
 
-</section>
+</div>
+
+</div>
 
 <script src="script.js"></script>
 
