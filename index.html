@@ -3,34 +3,84 @@
 
 <head>
 <meta charset="UTF-8">
-<title>PopMash - Pop en Español</title>
+<title>PopMash - Algoritmo de Pop en Español</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<h1>PopMash 🎵</h1>
-<p class="subtitle">Elige la canción que más te guste</p>
+<h1>PopMash 🎧</h1>
 
-<div class="battle">
+<!-- CONFIGURACIÓN -->
 
-<button id="optionA" onclick="choose(0)"></button>
+<section class="config">
+
+<h2>1. Configura</h2>
+
+<label>Tipo de oyente</label>
+
+<select id="listener">
+<option value="nuevo">Nuevo oyente</option>
+<option value="casual">Fan casual</option>
+<option value="musico">Músico</option>
+</select>
+
+
+<label>Contexto</label>
+
+<select id="context">
+<option value="concierto">¿Cuál funciona mejor en concierto?</option>
+<option value="audifonos">¿Cuál suena mejor con audífonos?</option>
+<option value="historia">¿Cuál cuenta mejor historia?</option>
+<option value="riff">¿Cuál tiene el riff más poderoso?</option>
+<option value="emocion">¿Cuál emociona más?</option>
+</select>
+
+<div class="buttons">
+
+<button onclick="newBattle()">Nuevo duelo</button>
+
+<button onclick="resetVotes()">Reiniciar votos</button>
+
+</div>
+
+</section>
+
+<!-- SECCIÓN ELEGIR -->
+
+<section class="battle">
+
+<h2>2. Elige</h2>
+
+<div class="duel">
+
+<button id="optionA" onclick="vote(0)"></button>
 
 <div class="vs">VS</div>
 
-<button id="optionB" onclick="choose(1)"></button>
+<button id="optionB" onclick="vote(1)"></button>
 
 </div>
 
-<div class="controls">
+<div class="buttons">
 
-<button class="rankingBtn" onclick="showRanking()">Ver Ranking</button>
+<button onclick="showTop()">Ver Top</button>
 
-<button class="battleBtn" onclick="newBattle()">Nueva Comparación</button>
+<button onclick="exportVotes()">Exportar votos</button>
 
 </div>
 
-<div id="ranking"></div>
+</section>
+
+<!-- RANKING -->
+
+<section class="ranking">
+
+<h2>3. Ranking en tiempo real</h2>
+
+<div id="rankingList"></div>
+
+</section>
 
 <script src="script.js"></script>
 
