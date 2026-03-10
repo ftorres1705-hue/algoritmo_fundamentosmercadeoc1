@@ -1,176 +1,92 @@
-const songs = [
-
-/* MORAT */
-
-"Cómo Te Atreves – Morat",
-"Besos en Guerra – Morat",
-"Cuando Nadie Ve – Morat",
-"Amor con Hielo – Morat",
-"506 – Morat",
-"Salir Con Vida – Morat",
-"Mi Nuevo Vicio – Morat",
-"A Dónde Vamos – Morat",
-
-/* YATRA */
-
-"Tacones Rojos – Sebastián Yatra",
-"Pareja del Año – Sebastián Yatra",
-"Traicionera – Sebastián Yatra",
-"Robarte un Beso – Sebastián Yatra",
-"Un Año – Sebastián Yatra",
-"Dos Oruguitas – Sebastián Yatra",
-
-/* ENRIQUE IGLESIAS */
-
-"Bailando – Enrique Iglesias",
-"Cuando Me Enamoro – Enrique Iglesias",
-"Hero – Enrique Iglesias",
-"El Perdón – Enrique Iglesias",
-"Subeme La Radio – Enrique Iglesias",
-
-/* LUIS FONSI */
-
-"Despacito – Luis Fonsi",
-"Aquí Estoy Yo – Luis Fonsi",
-"No Me Doy Por Vencido – Luis Fonsi",
-"Imagíname Sin Ti – Luis Fonsi",
-
-/* SHAKIRA */
-
-"Ojos Así – Shakira",
-"La Bicicleta – Shakira",
-"Hips Don't Lie – Shakira",
-"Antología – Shakira",
-"Estoy Aquí – Shakira",
-"Waka Waka – Shakira",
-
-/* CHINO & NACHO */
-
-"Andas En Mi Cabeza – Chino & Nacho",
-"Mi Niña Bonita – Chino & Nacho",
-"El Poeta – Chino & Nacho",
-"Tu Angelito – Chino & Nacho",
-
-/* EMILIA */
-
-"No Se Ve – Emilia",
-"Como Si No Importara – Emilia",
-"Exclusive – Emilia",
-"La_Original – Emilia",
-
-/* BEELE */
-
-"Loco – Beéle",
-"Morena – Beéle",
-"Inolvidable – Beéle",
-"Si Te Interesa – Beéle",
-
-/* OTRAS POP LATINO */
-
-"Me Rehúso – Danny Ocean",
-"Vivir Mi Vida – Marc Anthony",
-"Rayando el Sol – Maná",
-"Colgando en tus manos – Carlos Baute",
-"De Música Ligera – Soda Stereo",
-"Labios Compartidos – Maná"
-
-];
-
-let votes = new Array(songs.length).fill(0);
-
-let currentA;
-let currentB;
-
-function newBattle(){
-
-currentA = Math.floor(Math.random()*songs.length);
-currentB = Math.floor(Math.random()*songs.length);
-
-while(currentA === currentB){
-
-currentB = Math.floor(Math.random()*songs.length);
-
+body{
+background:#0b0b0c;
+color:white;
+font-family: system-ui, Arial, Helvetica, sans-serif;
+margin:0;
+padding:40px;
 }
 
-document.getElementById("optionA").innerText = songs[currentA];
-document.getElementById("optionB").innerText = songs[currentB];
-
+h1{
+font-size:36px;
+margin-bottom:10px;
 }
 
-function vote(choice){
-
-const listener = document.getElementById("listener").value;
-
-let weight = 1;
-
-if(listener === "musico") weight = 2;
-
-if(choice === 0){
-
-votes[currentA] += weight;
-
-}else{
-
-votes[currentB] += weight;
-
+h2{
+margin-top:0;
 }
 
-updateRanking();
-newBattle();
-
+.container{
+display:grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap:25px;
+margin-top:30px;
 }
 
-function updateRanking(){
-
-let ranking = songs.map((song,index)=>{
-
-return {song:song,score:votes[index]}
-
-});
-
-ranking.sort((a,b)=>b.score-a.score);
-
-let html="";
-
-ranking.slice(0,10).forEach((item,i)=>{
-
-html += `<div class="rankItem">${i+1}. ${item.song} — ${item.score} votos</div>`
-
-});
-
-document.getElementById("rankingList").innerHTML = html;
-
+.card{
+background:#111;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+border:1px solid #222;
 }
 
-function showTop(){
-
-updateRanking();
-
+select{
+width:100%;
+padding:10px;
+margin-top:6px;
+margin-bottom:15px;
+background:#1b1b1b;
+border:none;
+color:white;
+border-radius:8px;
 }
 
-function resetVotes(){
-
-votes = new Array(songs.length).fill(0);
-
-updateRanking();
-
+button{
+padding:10px 14px;
+margin:5px;
+border-radius:8px;
+border:none;
+background:#222;
+color:white;
+cursor:pointer;
+font-size:14px;
 }
 
-function exportVotes(){
-
-let data = songs.map((s,i)=>`${s},${votes[i]}`).join("\n");
-
-let blob = new Blob([data],{type:"text/plain"});
-
-let link = document.createElement("a");
-
-link.href = URL.createObjectURL(blob);
-
-link.download = "votos_pop.txt";
-
-link.click();
-
+button:hover{
+background:#ff2d75;
 }
 
-newBattle();
-updateRanking();
+.duel{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+margin-top:15px;
+}
+
+.song{
+flex:1;
+padding:18px;
+background:#1a1a1a;
+border-radius:10px;
+text-align:center;
+cursor:pointer;
+border:1px solid #333;
+}
+
+.song:hover{
+background:#ff2d75;
+}
+
+.vs{
+font-weight:bold;
+opacity:0.6;
+}
+
+.rankItem{
+display:flex;
+justify-content:space-between;
+padding:8px;
+border-bottom:1px solid #222;
+font-size:14px;
+}
