@@ -103,14 +103,19 @@ updateRanking();
 
 function exportVotes(){
 
-let data = songs.map((song,i)=> song + "," + votes[i]).join("\n");
+let csv = "Cancion,Votos\n";
 
-let blob = new Blob([data], {type:"text/plain"});
+songs.forEach((song,i)=>{
+csv += `"${song}",${votes[i]}\n`;
+});
+
+let blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
 
 let link = document.createElement("a");
 
 link.href = URL.createObjectURL(blob);
-link.download = "pop_votes.txt";
+
+link.download = "ranking_pop.csv";
 
 link.click();
 
